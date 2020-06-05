@@ -1,17 +1,10 @@
-import React, { useSate, useEffect, useState, Image } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/core";
-import {
-  Text,
-  View,
-  ActivityIndicator,
-  StyleSheet,
-  TextInput,
-} from "react-native";
-import { Entypo } from "@expo/vector-icons";
+import { View, ActivityIndicator, StyleSheet, TextInput } from "react-native";
 
 import axios from "axios";
-import Cards from "./components/Cards";
-import Stars from "./components/Stars";
+import Cards from "../components/Cards";
+import Header from "../components/Header";
 import {
   FlatList,
   TouchableWithoutFeedback,
@@ -52,18 +45,19 @@ export default function RestaurantScreen() {
       <TextInput
         style={styles.textInputStyle}
         onChangeText={(text) => searchFilter(text)}
-        value={data}
+        value={text}
         underlineColorAndroid="transparent"
-        placeholder="Recherche ici"
+        placeholder="Explorer"
       />
-
+      <Header />
       <FlatList
         data={data}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item) => String(item.placeId)}
         renderItem={({ item }) => (
           <TouchableWithoutFeedback
             onPress={() =>
               navigation.navigate("Restaurant", {
+                price: item.price,
                 name: item.name,
                 id: item.placeId,
                 description: item.description,
@@ -86,7 +80,8 @@ export default function RestaurantScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 20,
+    backgroundColor: "white",
+    margin: 5,
     flex: 1,
   },
   viewStyle: {
@@ -100,9 +95,11 @@ const styles = StyleSheet.create({
   },
   textInputStyle: {
     height: 40,
-    borderWidth: 1,
-    paddingLeft: 10,
-    borderColor: "#009688",
-    backgroundColor: "#FFFFFF",
+    borderWidth: 2,
+    paddingLeft: 12,
+    marginTop: 0,
+    borderColor: "#DBDBDB",
+    fontWeight: "bold",
+    backgroundColor: "#F6F6F6",
   },
 });

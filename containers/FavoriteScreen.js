@@ -78,12 +78,12 @@ export default function FavoriteScreen() {
 }
 const styles = StyleSheet.create({
   container: {
-    margin: 20,
+    margin: 6,
     flexDirection: "row",
   },
   img: {
     height: 120,
-    width: 130,
+    width: 144,
   },
   name: {
     margin: 5,

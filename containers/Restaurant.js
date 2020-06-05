@@ -5,12 +5,13 @@ import FavoriteScreen from "./FavoriteScreen";
 import { ScrollView } from "react-native-gesture-handler";
 import MapView from "react-native-maps";
 import { AsyncStorage } from "react-native";
-import Stars from "./components/Stars";
+import Stars from "../components/Stars";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
+import Dollars from "../components/Dollars";
 
 const Restaurant = ({ route }) => {
   const [favorite, setFavorite] = useState(null);
@@ -31,17 +32,23 @@ const Restaurant = ({ route }) => {
             }}
             data={route.params.pictures}
             renderItem={_renderItem}
-            sliderWidth={400}
-            itemWidth={300}
+            sliderWidth={414}
+            itemWidth={310}
             loop={true}
           />
 
           <View>
-            <View style={{ marginRight: 20, marginLeft: 20 }}>
-              <Text style={{ color: "white" }}>{route.params.name}</Text>
-              <Stars rating={route.params.rating} />
-              <View>
-                <View style={styles.watch}>
+            <View
+              style={{
+                marginRight: 20,
+                marginLeft: 20,
+              }}
+            >
+              <Text style={styles.name}>{route.params.name}</Text>
+
+              <View style={styles.watch}>
+                <View>
+                  <Stars rating={route.params.rating} />
                   <View style={{ flexDirection: "row" }}>
                     <Ionicons name="md-stopwatch" size={16} color="white" />
                     <Text
@@ -50,23 +57,24 @@ const Restaurant = ({ route }) => {
                       OUVERT
                     </Text>
                   </View>
+                </View>
 
-                  <View style={{ alignItems: "flex-end" }}>
-                    <TouchableOpacity
-                      style={styles.favorit}
-                      onPress={async () => {
-                        const value = JSON.stringify({
-                          route,
-                        });
-                        console.log(value);
-                        await AsyncStorage.setItem("favorite", value);
-                        setFavorite(value);
-                      }}
-                    >
-                      <Text style={{ color: "white" }}>Add favorite</Text>
-                      <Entypo name="heart" size={22} color="red" />
-                    </TouchableOpacity>
-                  </View>
+                <View style={{ alignItems: "flex-end" }}>
+                  <Dollars price={route} />
+                  <TouchableOpacity
+                    style={styles.favorit}
+                    onPress={async () => {
+                      const value = JSON.stringify({
+                        route,
+                      });
+                      console.log(value);
+                      await AsyncStorage.setItem("favorite", value);
+                      setFavorite(value);
+                    }}
+                  >
+                    <Text style={{ color: "white" }}>Ajouter favoris </Text>
+                    <Entypo name="heart" size={22} color="grey" />
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>
@@ -77,16 +85,16 @@ const Restaurant = ({ route }) => {
         {/* Tout est en dur sur cette deuxieme partie, la rendre dynamique plus tard */}
         <View style={styles.partie2}>
           <View style={{ alignItems: "center" }}>
-            <EvilIcons name="pencil" size={24} color="#66696E" />
+            <EvilIcons name="pencil" size={24} color="grey" />
             <Text style={styles.txt}>AJOUTER UN AVIS</Text>
           </View>
           <View style={{ alignItems: "center" }}>
-            <MaterialIcons name="add-a-photo" size={24} color="#66696E" />
+            <MaterialIcons name="add-a-photo" size={24} color="grey" />
             <Text style={styles.txt}>AJOUTER UNE</Text>
             <Text style={styles.txt}>PHOTO</Text>
           </View>
           <View style={{ alignItems: "center" }}>
-            <Entypo name="phone" size={24} color="#66696E" />
+            <Entypo name="phone" size={24} color="grey" />
             <Text style={styles.txt}>APPELER</Text>
           </View>
         </View>
@@ -156,6 +164,7 @@ const styles = StyleSheet.create({
   },
   partie1: {
     backgroundColor: "#7C4EC4",
+
     width: "100%",
   },
   partie3: {
@@ -165,6 +174,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#7C4EC4",
     flexDirection: "row",
     // justifyContent: "space-between",
+  },
+  name: {
+    borderBottomWidth: 1,
+    borderBottomColor: "grey",
+    borderColor: "#DBDBDB",
+    marginTop: 5,
+    textAlign: "center",
+    color: "#F0F0F0",
+    fontSize: 20,
+    fontWeight: "bold",
+    letterSpacing: 4,
   },
 });
 

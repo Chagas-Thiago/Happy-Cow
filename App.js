@@ -15,6 +15,8 @@ import { Entypo } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import SettingsScreen from "./containers/SettingScreen";
+
 // import RechercheScreen from "./containers/RechercheScreen";
 
 //
@@ -26,7 +28,7 @@ const Stack = createStackNavigator();
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [userToken, setUserToken] = useState(null);
-
+  const [userId, setUserId] = useState(null);
   //-------------------Token---------------------------------
   const setToken = async (token) => {
     if (token) {
@@ -36,11 +38,21 @@ export default function App() {
     }
     setUserToken(token);
   };
+  const setId = async (id) => {
+    if (id) {
+      AsyncStorage.setItem("userId", id);
+    } else {
+      AsyncStorage.removeItem("userId");
+    }
+    setUserId(id);
+  };
+
   useEffect(() => {
     const bootstrapAsync = async () => {
       const userToken = await AsyncStorage.getItem("userToken");
-      setIsLoading(false);
+
       setUserToken(userToken);
+      setIsLoading(false);
     };
     bootstrapAsync();
   }, []);
@@ -58,10 +70,10 @@ export default function App() {
               animationEnabled: false,
             }}
           >
-            {() => <SignInScreen setToken={setToken} />}
+            {(props) => <SignInScreen setId={setId} setToken={setToken} />}
           </Stack.Screen>
           <Stack.Screen name="SignUp">
-            {() => <SignUpScreen setToken={setToken} />}
+            {() => <SignUpScreen setId={setId} setToken={setToken} />}
           </Stack.Screen>
         </Stack.Navigator>
       ) : (
@@ -76,7 +88,8 @@ export default function App() {
             {() => (
               <Tab.Navigator
                 tabBarOptions={{
-                  activeTintColor: "tomato",
+                  style: { backgroundColor: "#EAEAEA" },
+                  activeTintColor: "green",
                   inactiveTintColor: "gray",
                 }}
               >
@@ -178,6 +191,36 @@ export default function App() {
                         }}
                       >
                         {(props) => <FavoriteScreen {...props} />}
+                      </Stack.Screen>
+                    </Stack.Navigator>
+                  )}
+                </Tab.Screen>
+                <Tab.Screen
+                  name="Réglages"
+                  options={{
+                    tabBarLabel: "Réglages",
+                    tabBarIcon: ({ color, size }) => (
+                      <MaterialIcons
+                        name="settings-power"
+                        size={24}
+                        color="#7C4EC4"
+                      />
+                    ),
+                  }}
+                >
+                  {() => (
+                    <Stack.Navigator>
+                      <Stack.Screen
+                        name="Settings"
+                        options={{
+                          title: "Réglages",
+                          tabBarLabel: "Settings",
+                          headerStyle: { backgroundColor: "#7C4EC4" },
+                          headerTitleStyle: { color: "white" },
+                          headerTitleAlign: "center",
+                        }}
+                      >
+                        {() => <SettingsScreen setToken={setToken} />}
                       </Stack.Screen>
                     </Stack.Navigator>
                   )}

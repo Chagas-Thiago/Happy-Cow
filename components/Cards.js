@@ -4,13 +4,12 @@ import Stars from "./Stars";
 import Icons from "./Icons";
 import Dollars from "./Dollars";
 import { Ionicons } from "@expo/vector-icons";
-import { FlatList } from "react-native-gesture-handler";
 
 const Cards = ({ data }) => {
   const [viewMore, setViewMore] = useState(false);
-  _renderItem = ({ item }) => {
-    return <Image style={styles.img} source={{ uri: item }} />;
-  };
+  // _renderItem = ({ item }) => {
+  //   return <Image style={styles.img} source={{ uri: item }} />;
+  // };
 
   //J'afiche seulement ceux q'uon description
   return data.description ? (
