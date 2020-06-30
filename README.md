@@ -1,6 +1,13 @@
 # Projet-Happy-Cow
- ![Gifvaca feliz](https://github.com/Chagas-Thiago/Happy-Cow/blob/master/vacafeliz.gif)
+![Gifvaca feliz](https://github.com/Chagas-Thiago/Happy-Cow/blob/master/vacafeliz.gif)
+
+## Overview
+
+Happy-Cow clone made.
+10 screens are availables : Login, Signup, Home, RestaurantScreen,VeganScreen,VegetarienScreen,OptionsScreen,Favorite, Carte, Réglages.
+
 ## Installation and usage
+
 Be sure, you have installed all dependencies and applications to run React Native Expo project on your computer : Getting Started with React Native.
 
 ## This project works pretty fine for iOS and Android.
