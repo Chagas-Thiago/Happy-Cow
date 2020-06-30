@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+// Fiche d'un seule restaurant
+
+import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import Carousel from "react-native-snap-carousel";
-import FavoriteScreen from "./FavoriteScreen";
 import { ScrollView } from "react-native-gesture-handler";
 import MapView from "react-native-maps";
 import { AsyncStorage } from "react-native";
-import Stars from "../components/Stars";
-import { FontAwesome } from "@expo/vector-icons";
+
 import { Ionicons } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
+import Stars from "../components/Stars";
 import Dollars from "../components/Dollars";
 
 const Restaurant = ({ route }) => {
-  const [favorite, setFavorite] = useState(null);
-  // console.log("Route ===>", route);
+  const [favorite, setFavorite] = useState([]);
   _renderItem = ({ item, index }) => {
     return <Image style={styles.img} source={{ uri: item }} />;
   };
@@ -64,16 +64,20 @@ const Restaurant = ({ route }) => {
                   <TouchableOpacity
                     style={styles.favorit}
                     onPress={async () => {
-                      const value = JSON.stringify({
-                        route,
-                      });
-                      console.log(value);
-                      await AsyncStorage.setItem("favorite", value);
-                      setFavorite(value);
+                      if (setFavorite !== null) {
+                        const value = JSON.stringify({
+                          route,
+                        });
+                        // console.log(value);
+                        await AsyncStorage.setItem("favorite", value);
+                        setFavorite(value);
+                      } else {
+                        alert("dèja add");
+                      }
                     }}
                   >
                     <Text style={{ color: "white" }}>Ajouter favoris </Text>
-                    <Entypo name="heart" size={22} color="grey" />
+                    <Entypo name="heart" size={22} color="red" />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -105,7 +109,7 @@ const Restaurant = ({ route }) => {
         </View>
         <View>
           <MapView
-            scrollEnabled={true}
+            scrollEnabled={false}
             style={{
               flex: 1,
               height: 200,

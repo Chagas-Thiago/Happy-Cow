@@ -1,3 +1,5 @@
+//Page d'inscription
+
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
@@ -57,21 +59,21 @@ export default function SingUpScreen({ setToken }) {
           <TextInput
             style={styles.textInput}
             placeholder="email"
-            placeholderTextColor="white"
+            placeholderTextColor="#8C5FC9"
             onChangeText={(text) => setEmail(text)}
             value={email}
           />
           <TextInput
             style={styles.textInput}
             placeholder="username"
-            placeholderTextColor="white"
+            placeholderTextColor="#8C5FC9"
             onChangeText={(text) => setUsername(text)}
             value={username}
           />
           <TextInput
             style={styles.textInput}
             placeholder="name"
-            placeholderTextColor="white"
+            placeholderTextColor="#8C5FC9"
             onChangeText={(text) => setName(text)}
             value={name}
           />
@@ -81,14 +83,14 @@ export default function SingUpScreen({ setToken }) {
             maxLength={200}
             style={styles.textArea}
             placeholder="description (max. 200 characters"
-            placeholderTextColor="white"
+            placeholderTextColor="#8C5FC9"
             onChangeText={(text) => setDescription(text)}
             value={description}
           />
           <TextInput
             style={styles.textInput}
             placeholder="password"
-            placeholderTextColor="white"
+            placeholderTextColor="#8C5FC9"
             secureTextEntry={true}
             onChangeText={(text) => setPassword(text)}
             value={password}
@@ -96,7 +98,7 @@ export default function SingUpScreen({ setToken }) {
           <TextInput
             style={styles.textInput}
             placeholder="confirm password"
-            placeholderTextColor="white"
+            placeholderTextColor="#8C5FC9"
             secureTextEntry={true}
             onChangeText={(text) => setConfirmPassword(text)}
             value={confirmPassword}
@@ -127,7 +129,7 @@ export default function SingUpScreen({ setToken }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#8C5FC9",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -138,29 +140,29 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    color: "white",
+    color: "#8C5FC9",
     marginVertical: 20,
   },
   button: {
     width: 190,
     height: 65,
     borderRadius: 10,
-    backgroundColor: "white",
+    backgroundColor: "#8C5FC9",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 50,
+    marginTop: 30,
   },
   buttonText: {
-    color: "#8C5FC9",
+    color: "white",
     fontSize: 24,
   },
   underButton: {
     marginTop: 15,
-    color: "white",
+    color: "#8C5FC9",
     textDecorationLine: "underline",
   },
   textInput: {
-    borderBottomColor: "white",
+    borderBottomColor: "#8C5FC9",
     borderBottomWidth: 1,
     width: 330,
     height: 45,
@@ -171,12 +173,12 @@ const styles = StyleSheet.create({
   textArea: {
     width: 330,
     height: 80,
-    borderColor: "white",
+    borderColor: "#8C5FC9",
     borderWidth: 1,
     paddingHorizontal: 15,
     paddingTop: 15,
     textAlignVertical: "top",
-    color: "white",
+    color: "#8C5FC9",
     marginBottom: 20,
   },
 });

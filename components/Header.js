@@ -1,15 +1,20 @@
+//Les bouttom pour filtres les types de restaurant/magasin vegan
+
 import React from "react";
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/core";
 
-const Header = () => {
+const Header = ({ data }) => {
+  console.log(data);
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("VeganScreen")}>
         <View style={styles.view}>
           <View style={{ margin: 8, alignItems: "center" }}>
             <FontAwesome5
@@ -21,19 +26,23 @@ const Header = () => {
           </View>
         </View>
       </TouchableOpacity>
-      <View style={styles.view}>
-        <View style={{ margin: 8, alignItems: "center" }}>
-          <Entypo name="leaf" size={18} color="purple" />
-          <Text style={styles.txt}>Végétarien</Text>
-        </View>
-      </View>
 
-      <View style={styles.view}>
-        <View style={{ margin: 8, alignItems: "center" }}>
-          <Entypo name="leaf" size={18} color="#E56257" />
-          <Text style={styles.txt}>Options vég...</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("VegetarienScreen")}>
+        <View style={styles.view}>
+          <View style={{ margin: 8, alignItems: "center" }}>
+            <Entypo name="leaf" size={18} color="purple" />
+            <Text style={styles.txt}>Végétarien</Text>
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("OptionsScreen")}>
+        <View style={styles.view}>
+          <View style={{ margin: 8, alignItems: "center" }}>
+            <Entypo name="leaf" size={18} color="#E56257" />
+            <Text style={styles.txt}>Options vég...</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
 
       <View style={styles.view}>
         <View style={{ margin: 8, alignItems: "center" }}>

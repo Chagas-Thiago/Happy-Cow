@@ -16,25 +16,25 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function FavoriteScreen() {
   const [isLoading, setIsLoading] = useState(true);
-  const [favorite, setFavorite] = useState(null);
+  const [favorite, setFavorite] = useState([]);
 
   useEffect(() => {
     const bootstrapAsync = async () => {
-      const stored = await AsyncStorage.getItem("favorite");
+      const stored = await AsyncStorage.getItem("favorite", value);
 
       const value = JSON.parse(stored);
 
       setFavorite(value);
       setIsLoading(false);
-      console.log("value:", value);
+      // console.log("value:", value);
     };
 
     bootstrapAsync();
-  }, []);
+  }, [favorite]);
 
   return isLoading ? (
     <ActivityIndicator />
-  ) : (
+  ) : favorite ? (
     <ScrollView style={styles.container}>
       <View
         style={{
@@ -74,7 +74,7 @@ export default function FavoriteScreen() {
         </View>
       </View>
     </ScrollView>
-  );
+  ) : null;
 }
 const styles = StyleSheet.create({
   container: {
@@ -94,5 +94,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     fontSize: 14,
     margin: 4,
+  },
+  favoritnull: {
+    fontFamily: "serif",
+    color: "gray",
+    marginTop: "50%",
+    fontSize: 30,
+    textAlign: "center",
   },
 });

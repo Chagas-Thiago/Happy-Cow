@@ -1,23 +1,20 @@
-//Page principal
+//Le screen VegetarienScreen qui reçois ça condittion du componants CardsVeget
 
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/core";
-import { View, ActivityIndicator, StyleSheet, TextInput } from "react-native";
+import { View, StyleSheet } from "react-native";
+import CardsVeget from "../components/CardsVeget";
+import axios from "axios";
+
 import {
   FlatList,
   TouchableWithoutFeedback,
 } from "react-native-gesture-handler";
 
-import axios from "axios";
-import Cards from "../components/Cards";
-import Header from "../components/Header";
-
-export default function RestaurantScreen() {
+export default function VegtarienScreen() {
   const [data, setData] = useState([]);
-  const [text, setText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const navigation = useNavigation();
-
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
@@ -26,34 +23,11 @@ export default function RestaurantScreen() {
       setData(response.data);
       setIsLoading(false);
     };
-
     fetchData();
   }, []);
 
-  //Barre de recherche
-  const searchFilter = (text) => {
-    const newData = data.filter((item) => {
-      const itemData = item.name ? item.name.toUpperCase() : "".toUpperCase();
-      const textData = text.toUpperCase();
-      return itemData.indexOf(textData) > -1;
-    });
-
-    setData(newData);
-    setText(text);
-  };
-
-  return isLoading ? (
-    <ActivityIndicator />
-  ) : (
+  return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.textInputStyle}
-        onChangeText={(text) => searchFilter(text)}
-        value={text}
-        underlineColorAndroid="transparent"
-        placeholder="Explorer"
-      />
-      <Header />
       <FlatList
         data={data}
         keyExtractor={(item) => String(item.placeId)}
@@ -74,7 +48,7 @@ export default function RestaurantScreen() {
               })
             }
           >
-            <Cards data={item} />
+            <CardsVeget data={item} />
           </TouchableWithoutFeedback>
         )}
       />
@@ -84,8 +58,8 @@ export default function RestaurantScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
-    margin: 5,
+    backgroundColor: "#DBB9E1",
+    margin: 2,
     flex: 1,
   },
   viewStyle: {
@@ -107,3 +81,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6F6F6",
   },
 });
+
+//   return data.vegan === 1 && data.category === 0 ? (

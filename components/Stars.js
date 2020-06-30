@@ -1,3 +1,5 @@
+//les notes des restaurants,totalement dynamique
+
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -8,13 +10,7 @@ const Stars = ({ rating }) => {
     for (let i = 1; i <= 5; i++) {
       if (i <= rating) {
         tab.push(
-          <Ionicons
-            key={i}
-            name="ios-star"
-            size={16}
-            color="#F5B000"
-            // style={{ marginRight: 1 }}
-          />
+          <Ionicons key={i} name="ios-star" size={16} color="#F5B000" />
         );
       } else {
         tab.push(

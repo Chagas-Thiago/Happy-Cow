@@ -1,3 +1,4 @@
+//Les icons pour etre importer sur les pages q'uon besoin
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -30,7 +31,7 @@ const Icons = ({ category, vegan }) => {
   if (category > 2) {
     tab.push(<Ionicons key={vegan} name="md-leaf" size={16} color="#4093B1" />);
   }
-  // console.log("test2", vegan);
+
   return tab;
 };
 

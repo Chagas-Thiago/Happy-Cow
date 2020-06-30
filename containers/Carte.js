@@ -1,5 +1,8 @@
+//le Screen de la map
+
 import React, { useEffect, useState } from "react";
 import { View, ActivityIndicator } from "react-native";
+
 import * as Location from "expo-location";
 import axios from "axios";
 import MapView from "react-native-maps";
@@ -9,7 +12,7 @@ export default function Carte() {
   const [longitude, setLongitude] = useState(null);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  //demande la pemition d'acess
   useEffect(() => {
     const askPermission = async () => {
       const { status } = await Location.requestPermissionsAsync();
@@ -40,7 +43,13 @@ export default function Carte() {
   return isLoading ? (
     <ActivityIndicator />
   ) : (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <MapView
         scrollEnabled={true}
         initialRegion={{
@@ -59,6 +68,8 @@ export default function Carte() {
                 latitude: marker.location.lat,
                 longitude: marker.location.lng,
               }}
+              title={marker.name}
+              pinColor="purple"
             />
           );
         })}

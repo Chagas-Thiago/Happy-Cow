@@ -4,13 +4,13 @@
     "slug": "react-navigation-starter-200225",
     "privacy": "public",
     "sdkVersion": "36.0.0",
-
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+
     "splash": {
-      "image": "./assets/Header2.png",
+      "image": "./assets/Logo.png",
+      "name": "Made with React at Le Reacteur by Thiago",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -20,6 +20,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": ""
   }
 }

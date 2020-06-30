@@ -1,5 +1,4 @@
-//Cards pour etre recuperer a RestaurantScreen
-
+//Cards pour etre recuperer aux screen a CardVegan
 import React, { useState } from "react";
 import { View, Text, ImageBackground, Image, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -8,22 +7,24 @@ import Stars from "./Stars";
 import Icons from "./Icons";
 import Dollars from "./Dollars";
 
-const Cards = ({ data }) => {
+const CardsVegan = ({ data }) => {
   const [viewMore, setViewMore] = useState(false);
 
   //J'afiche seulement ceux q'uon description
-  return data.description ? (
+  return data.vegan === 1 && data.category === 0 ? (
     <View style={styles.container}>
       <Image style={styles.img} source={{ uri: data.thumbnail }} />
       <View style={styles.container}>
         <View>
           <View>
             <Text style={styles.name}>{data.name}</Text>
+
             <Stars rating={data.rating} />
             <View style={styles.watch}>
               <Ionicons name="md-stopwatch" size={18} color="#66B032" />
               <Text style={{ color: "#66B032", marginLeft: 5 }}>OUVERT</Text>
             </View>
+
             <Text
               numberOfLines={viewMore ? null : 2}
               style={styles.description}
@@ -64,4 +65,4 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
-export default Cards;
+export default CardsVegan;

@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { AsyncStorage, Image, StyleSheet } from "react-native";
+import { AsyncStorage } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
+
+import { Feather } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import RestaurantScreen from "./containers/RestaurantScreen";
-import ProfileScreen from "./containers/ProfileScreen";
+import SettingsScreen from "./containers/SettingScreen";
+import VeganScreen from "./containers/VeganScreen";
+import VegetarienScreen from "./containers/VegetarienScreen";
+import OptionsScreen from "./containers/OptionsScreen";
 import SignInScreen from "./containers/SignInScreen";
 import SignUpScreen from "./containers/SignUpScreen";
 import FavoriteScreen from "./containers/FavoriteScreen";
 import Restaurant from "./containers/Restaurant";
 import Carte from "./containers/Carte";
-import { Entypo } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import SettingsScreen from "./containers/SettingScreen";
-
 // import RechercheScreen from "./containers/RechercheScreen";
 
 //
@@ -72,7 +73,15 @@ export default function App() {
           >
             {(props) => <SignInScreen setId={setId} setToken={setToken} />}
           </Stack.Screen>
-          <Stack.Screen name="SignUp">
+          <Stack.Screen
+            name="SignUp"
+            options={{
+              title: "Inscription",
+              headerStyle: { backgroundColor: "#7C4EC4" },
+              headerTitleAlign: "center",
+              headerTitleStyle: { color: "white" },
+            }}
+          >
             {() => <SignUpScreen setId={setId} setToken={setToken} />}
           </Stack.Screen>
         </Stack.Navigator>
@@ -134,8 +143,49 @@ export default function App() {
                       >
                         {(props) => <Restaurant {...props} />}
                       </Stack.Screen>
+                      <Stack.Screen
+                        name="VeganScreen"
+                        options={{
+                          title: "Vegan",
+                          headerStyle: { backgroundColor: "#6CAC4E" },
+                          headerTitleStyle: {
+                            color: "white",
+                            marginRight: 55,
+                            textAlign: "center",
+                          },
+                        }}
+                      >
+                        {(props) => <VeganScreen {...props} />}
+                      </Stack.Screen>
+                      <Stack.Screen
+                        name="VegetarienScreen"
+                        options={{
+                          title: "Végétarien",
+                          headerStyle: { backgroundColor: "#A51EF7" },
+                          headerTitleStyle: {
+                            color: "white",
+                            marginRight: 55,
+                            textAlign: "center",
+                          },
+                        }}
+                      >
+                        {(props) => <VegetarienScreen {...props} />}
+                      </Stack.Screen>
+                      <Stack.Screen
+                        name="OptionsScreen"
+                        options={{
+                          title: "Options végétarien",
+                          headerStyle: { backgroundColor: "#F69800" },
+                          headerTitleStyle: {
+                            color: "white",
+                            marginRight: 55,
+                            textAlign: "center",
+                          },
+                        }}
+                      >
+                        {(props) => <OptionsScreen {...props} />}
+                      </Stack.Screen>
                     </Stack.Navigator>
-                    //
                   )}
                 </Tab.Screen>
 
